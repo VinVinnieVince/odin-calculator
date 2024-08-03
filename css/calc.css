@@ -5,16 +5,54 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
+}
+
+.calcWrapper {
+    box-sizing: border-box;
+    height: 100%;
+    min-height: 520px;
+    aspect-ratio: 1.7 / 3;
+    display: flex;
+    flex-flow: column;
+    border: 2px solid black;
+    margin: 0;
+    gap: 30px;
+    padding: 30px;
+}
+
+.screen {
+    flex: 3 0 auto;
+    border: 2px solid black;
 }
 
 .btnWrapper {
     display: flex;
     flex-flow: column;
+    justify-content: center;
+    flex: 7 0 auto;
     gap: 10px;
+    border: 2px solid black;
 }
 
 .btnRow {
     display: flex;
+    flex: 1 0 0;
     gap: 10px;
-    justify-content: space-between;
+}
+
+button {
+    flex: 1 0 0;
+    padding: 0;
+    border: none;
+    border-radius: 9999px;
+    background-color: lightgray;
+}
+
+.zeroBtn {
+    flex: 2 0 auto;
+}
+
+.bottomBtn {
+    flex: 1 0 0;
 }
