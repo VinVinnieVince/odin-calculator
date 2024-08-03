@@ -22,7 +22,7 @@
 }
 
 .screen {
-    flex: 3 0 auto;
+    flex: 3.33 0 auto;
     border: 2px solid black;
 }
 
@@ -30,7 +30,7 @@
     display: flex;
     flex-flow: column;
     justify-content: center;
-    flex: 7 0 auto;
+    flex: 6.66 0 auto;
     gap: 10px;
     border: 2px solid black;
 }
