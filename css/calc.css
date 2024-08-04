@@ -22,8 +22,14 @@
 }
 
 .screen {
-    flex: 3.33 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex: 3.33 0 0;
     border: 2px solid black;
+    padding-right: 5%;
+    overflow: hidden;
 }
 
 .btnWrapper {
