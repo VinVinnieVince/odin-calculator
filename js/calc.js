@@ -18,6 +18,7 @@ const calcVars = {
     numA: 0,
     numB: 0,
     op: '',
+    displVar: '',
 }
 
 function operate(a, b, op) {
@@ -35,3 +36,69 @@ function operate(a, b, op) {
             return;
     }
 };
+
+function changeDisplay (btn) {
+    const screen = document.querySelector('.screen');
+    const currText = document.createElement('div');
+    const input = String(btn.textContent)
+
+    currText.classList.add('display');
+    currText.textContent = calcVars.displVar;
+
+    // switch would be ideal but unsure how to implement
+    if (+input === +input) {
+
+        // this conditional prevents leading zeros
+        if (currText.textContent === '0' && input === '0') {
+            return;
+        } else if (currText.textContent === '0' && input !== '0') {
+            currText.textContent = input;
+            calcVars.displVar = input;
+    
+            screen.textContent = '';
+            screen.appendChild(currText);
+            return;    
+        }
+
+        if (calcVars.op) {
+            calcVars.displVar = '';
+            screen.textContent = '';
+            currText.textContent = '';
+            calcVars.op = '';
+        }
+
+        currText.textContent += input;
+        calcVars.displVar += input;
+
+        screen.textContent = '';
+        screen.appendChild(currText);
+
+    } else if ('+-*/'.includes(input)) {
+        calcVars.op = input;
+        currText.textContent += input;
+
+        screen.textContent = '';
+        screen.appendChild(currText);
+
+    } else if (input === 'AC') {
+        calcVars.displVar = '';
+        screen.textContent = '0';
+        currText.textContent = '';
+        calcVars.op = '';
+
+    } else if (input === '+/-') {
+        currText.textContent = calcVars.displVar * -1;
+        calcVars.displVar = calcVars.displVar * -1;
+
+        screen.textContent = '';
+        screen.appendChild(currText);
+
+    }
+}
+
+const allBtn = document.querySelectorAll('button');
+allBtn.forEach( (btn) => {
+    btn.addEventListener('click', () => {
+        changeDisplay(btn);
+    })
+})
