@@ -14,3 +14,8 @@ function divide(a, b) {
     return a / b;
 };
 
+const calcVars = {
+    numA: 0,
+    numB: 0,
+    op: '',
+}
