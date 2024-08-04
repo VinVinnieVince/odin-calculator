@@ -63,6 +63,7 @@ function changeDisplay (btn) {
             return;    
         }
 
+        // if operator has been pressed, clear screen upon pressing next number
         if (calcVars.op) {
             calcVars.displVar = '';
             screen.textContent = '';
