@@ -41,6 +41,14 @@
     gap: 10px;
 }
 
+.bottomRow {
+    display: flex;
+}
+
+.bottomRow.bottomBtn {
+    gap: 10px;
+}
+
 button {
     flex: 1 0 0;
     padding: 0;
@@ -50,7 +58,7 @@ button {
 }
 
 .zeroBtn {
-    flex: 2 0 auto;
+    flex: 1 0 auto;
 }
 
 .bottomBtn {
