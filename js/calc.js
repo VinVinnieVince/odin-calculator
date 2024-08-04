@@ -43,9 +43,12 @@ function changeDisplay (btn) {
     const input = String(btn.textContent)
 
     currText.classList.add('display');
+
+    // if number alrdy exists, retrieve that number
     currText.textContent = calcVars.displVar;
 
-    // switch would be ideal but unsure how to implement
+    // switch could be better for the following, but unsure how to implement
+    // next line checks if is number
     if (+input === +input) {
 
         // this conditional prevents leading zeros
