@@ -113,7 +113,7 @@ function changeDisplay (btn) {
 
     } else if (input === '+/-') {
         calcVars.displVar = calcVars.displVar * -1;
-        currText.textContent = calcVars.displVar + calcVars.op;
+        currText.textContent = calcVars.displVar;
 
         screen.textContent = '';
         screen.appendChild(currText);
