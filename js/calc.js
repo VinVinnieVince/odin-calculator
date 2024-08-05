@@ -87,6 +87,7 @@ function changeDisplay (btn) {
         screen.appendChild(currText);
 
     } else if ('+-*/'.includes(input)) {
+
         calcVars.op = input;
         calcVars.decimal = false;
 
@@ -101,6 +102,7 @@ function changeDisplay (btn) {
         calcVars.percent = false;
         calcVars.decimal = false;
 
+        calcVars.displVar = '0';
         screen.textContent = '0';
 
     } else if (input === '+/-') {
