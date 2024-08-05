@@ -20,6 +20,7 @@ const calcVars = {
     op: '',
     displVar: '',
     percent: false,
+    decimal: false,
 }
 
 function operate(a, b, op) {
@@ -67,10 +68,12 @@ function changeDisplay (btn) {
 
         // if operator has been pressed, clear screen upon pressing next number
         // percent only applies once until an operator AND another number is inputted
+        // same with decimal
         if (calcVars.op) {
             calcVars.op = '';
             calcVars.displVar = '';
             calcVars.percent = false;
+            calcVars.decimal = false;
 
             currText.textContent = '';
             screen.textContent = '';
@@ -95,6 +98,7 @@ function changeDisplay (btn) {
         calcVars.displVar = '';
         calcVars.op = '';
         calcVars.percent = false;
+        calcVars.decimal = false;
 
         screen.textContent = '0';
 
@@ -116,8 +120,20 @@ function changeDisplay (btn) {
 
         screen.textContent = '';
         screen.appendChild(currText);
+    } else if (input === '.') {
+        if (calcVars.decimal || calcVars.percent) {
+            return;
+        }
+
+        calcVars.decimal = true;
+        calcVars.displVar += input
+        currText.textContent = calcVars.displVar
+
+        screen.textContent = '';
+        screen.appendChild(currText);
     }
 }
+
 
 const allBtn = document.querySelectorAll('button');
 allBtn.forEach( (btn) => {
