@@ -88,6 +88,7 @@ function changeDisplay (btn) {
 
     } else if ('+-*/'.includes(input)) {
         calcVars.op = input;
+        calcVars.decimal = false;
 
         currText.textContent += input;
 
@@ -123,6 +124,11 @@ function changeDisplay (btn) {
     } else if (input === '.') {
         if (calcVars.decimal || calcVars.percent) {
             return;
+        }
+
+        if (calcVars.op) {
+            calcVars.op = '';
+            calcVars.displVar = '';
         }
 
         calcVars.decimal = true;
