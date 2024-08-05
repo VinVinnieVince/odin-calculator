@@ -1,5 +1,5 @@
 function add(a, b) { 
-    return a + b;
+    return +a + +b;
 };
 
 function subtract(a, b) {
@@ -18,6 +18,7 @@ const calcVars = {
     numA: 0,
     numB: 0,
     op: '',
+    isOp: false,
     displVar: '',
     percent: false,
     decimal: false,
@@ -66,18 +67,10 @@ function changeDisplay (btn) {
             return;    
         }
 
-        // if operator has been pressed, clear screen upon pressing next number
-        // percent only applies once until an operator AND another number is inputted
-        // same with decimal
-        if (calcVars.op) {
-            calcVars.op = '';
+        // clear screen if previous input was an operator
+        if (calcVars.isOp) {
+            calcVars.isOp = false;
             calcVars.displVar = '';
-            calcVars.percent = false;
-            calcVars.decimal = false;
-
-            currText.textContent = '';
-            screen.textContent = '';
-
         }
 
         calcVars.displVar += input;
@@ -87,18 +80,31 @@ function changeDisplay (btn) {
         screen.appendChild(currText);
 
     } else if ('+-*/'.includes(input)) {
+        // prevent screen from clearing if operator button pressed sucessively
+        if ((input === calcVars.op) && (calcVars.displVar === '')) {
+            return;
+        }
+
+        calcVars.numA = calcVars.displVar;
 
         calcVars.op = input;
-        calcVars.decimal = false;
+        calcVars.isOp = true;
 
         currText.textContent += input;
 
         screen.textContent = '';
         screen.appendChild(currText);
 
+        // percent only applies once until an operator AND another number is inputted
+        // same with decimal
+        calcVars.percent = false;
+        calcVars.decimal = false;
+
     } else if (input === 'AC') {
-        calcVars.displVar = '';
+        calcVars.numA = 0;
+        calcVars.numB = 0;
         calcVars.op = '';
+        calcVars.isOp = false;
         calcVars.percent = false;
         calcVars.decimal = false;
 
@@ -139,6 +145,22 @@ function changeDisplay (btn) {
 
         screen.textContent = '';
         screen.appendChild(currText);
+    } else if (input === '=') {
+        calcVars.numB = calcVars.displVar;
+
+        calcVars.displVar = operate(calcVars.numA, calcVars.numB, calcVars.op);
+        calcVars.numA = calcVars.displVar;
+        currText.textContent = calcVars.displVar;
+
+        // to chain sucessive operations from pressing '=' multiple times
+        calcVars.displVar = calcVars.numB;
+
+        screen.textContent = '';
+        screen.appendChild(currText);
+
+        calcVars.isOp = false;
+        calcVars.percent = false;
+        calcVars.decimal = false;
     }
 }
 
