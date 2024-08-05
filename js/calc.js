@@ -112,7 +112,8 @@ function changeDisplay (btn) {
         screen.textContent = '0';
 
     } else if (input === '+/-') {
-        calcVars.displVar = calcVars.displVar * -1;
+        
+        calcVars.displVar = calcVars.numA * -1;
         currText.textContent = calcVars.displVar;
 
         calcVars.op = '';
@@ -149,6 +150,11 @@ function changeDisplay (btn) {
         screen.textContent = '';
         screen.appendChild(currText);
     } else if (input === '=') {
+        // do nothing if there is no operator
+        if (!(calcVars.op)) {
+            return;
+        }
+
         calcVars.numB = calcVars.displVar;
 
         calcVars.displVar = operate(calcVars.numA, calcVars.numB, calcVars.op);
