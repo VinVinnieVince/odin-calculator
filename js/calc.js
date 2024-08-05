@@ -19,6 +19,7 @@ const calcVars = {
     numB: 0,
     op: '',
     displVar: '',
+    percent: false,
 }
 
 function operate(a, b, op) {
@@ -55,8 +56,9 @@ function changeDisplay (btn) {
         if (currText.textContent === '0' && input === '0') {
             return;
         } else if (currText.textContent === '0' && input !== '0') {
-            currText.textContent = input;
             calcVars.displVar = input;
+
+            currText.textContent = input;
     
             screen.textContent = '';
             screen.appendChild(currText);
@@ -64,21 +66,26 @@ function changeDisplay (btn) {
         }
 
         // if operator has been pressed, clear screen upon pressing next number
+        // percent only applies once until an operator AND another number is inputted
         if (calcVars.op) {
-            calcVars.displVar = '';
-            screen.textContent = '';
-            currText.textContent = '';
             calcVars.op = '';
+            calcVars.displVar = '';
+            calcVars.percent = false;
+
+            currText.textContent = '';
+            screen.textContent = '';
+
         }
 
-        currText.textContent += input;
         calcVars.displVar += input;
+        currText.textContent = calcVars.displVar;
 
         screen.textContent = '';
         screen.appendChild(currText);
 
     } else if ('+-*/'.includes(input)) {
         calcVars.op = input;
+
         currText.textContent += input;
 
         screen.textContent = '';
@@ -86,17 +93,29 @@ function changeDisplay (btn) {
 
     } else if (input === 'AC') {
         calcVars.displVar = '';
-        screen.textContent = '0';
-        currText.textContent = '';
         calcVars.op = '';
+        calcVars.percent = false;
+
+        screen.textContent = '0';
 
     } else if (input === '+/-') {
-        currText.textContent = calcVars.displVar * -1;
         calcVars.displVar = calcVars.displVar * -1;
+        currText.textContent = calcVars.displVar + calcVars.op;
 
         screen.textContent = '';
         screen.appendChild(currText);
+    } else if (input === '%') {
+        // percent should only trigger once per number, should not affect 0
+        if ((calcVars.displVar / 100 === 0) || calcVars.percent) {
+            return;
+        }
 
+        calcVars.displVar = calcVars.displVar / 100;
+        calcVars.percent = true;
+        currText.textContent = calcVars.displVar + calcVars.op;
+
+        screen.textContent = '';
+        screen.appendChild(currText);
     }
 }
 
