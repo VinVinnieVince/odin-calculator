@@ -115,6 +115,9 @@ function changeDisplay (btn) {
         calcVars.displVar = calcVars.displVar * -1;
         currText.textContent = calcVars.displVar;
 
+        calcVars.op = '';
+        calcVars.isOp = false;
+
         screen.textContent = '';
         screen.appendChild(currText);
     } else if (input === '%') {
