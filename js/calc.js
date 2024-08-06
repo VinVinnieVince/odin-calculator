@@ -144,6 +144,22 @@ function percentage(currText) {
     currText.textContent = calcVars.displVar + calcVars.op;
 }
 
+function decimalBtn(currText, input) {
+    if (calcVars.decimal || calcVars.percent) {
+        return;
+    }
+
+    // if '.' keep operator, but refresh screen
+    if (calcVars.isOp) {
+        calcVars.isOp = false;
+        calcVars.displVar = '';
+    }
+
+    calcVars.decimal = true;
+    calcVars.displVar += input
+    currText.textContent = calcVars.displVar
+}
+
 function changeDisplay (btn) {
     const currText = document.createElement('div');
     const input = String(btn.textContent)
@@ -172,19 +188,7 @@ function changeDisplay (btn) {
         percentage(currText);
 
     } else if (input === '.') {
-        if (calcVars.decimal || calcVars.percent) {
-            return;
-        }
-
-        // if '.' keep operator, but refresh screen
-        if (calcVars.isOp) {
-            calcVars.isOp = false;
-            calcVars.displVar = '';
-        }
-
-        calcVars.decimal = true;
-        calcVars.displVar += input
-        currText.textContent = calcVars.displVar
+        decimalBtn(currText, input);
 
     } else if (input === '=') {
         // do nothing if there is no operator
