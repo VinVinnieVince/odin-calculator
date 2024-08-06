@@ -63,6 +63,7 @@ function insertNum(currText, input) {
     // clear screen if previous input was an operator
     if (calcVars.isOp) {
         calcVars.isOp = false;
+        calcVars.equals = false;
         calcVars.displVar = '';
     } else if (calcVars.equals) {
         resetCalc();
