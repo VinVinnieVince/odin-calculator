@@ -118,6 +118,17 @@ function insertOp(currText, input) {
     calcVars.decimal = false;
 }
 
+function resetCalc() {
+    calcVars.numA = 0;
+    calcVars.numB = 0;
+    calcVars.op = '';
+    calcVars.isOp = false;
+    calcVars.percent = false;
+    calcVars.decimal = false;
+    calcVars.equals = false;
+    calcVars.displVar = '0';
+}
+
 function changeDisplay (btn) {
     const currText = document.createElement('div');
     const input = String(btn.textContent)
@@ -138,16 +149,8 @@ function changeDisplay (btn) {
         insertOp(currText, input);
 
     } else if (input === 'AC') {
-        calcVars.numA = 0;
-        calcVars.numB = 0;
-        calcVars.op = '';
-        calcVars.isOp = false;
-        calcVars.percent = false;
-        calcVars.decimal = false;
-        calcVars.equals = false;
-
-        calcVars.displVar = '0';
         currText.textContent = '0';
+        resetCalc();
 
     } else if (input === '+/-') {
         if (calcVars.equals) {
