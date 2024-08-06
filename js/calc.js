@@ -41,8 +41,13 @@ function operate(a, b, op) {
     }
 };
 
-function changeDisplay (btn) {
+function refreshScreen(text) {
     const screen = document.querySelector('.screen');
+    screen.textContent = '';
+    screen.appendChild(text);
+}
+
+function changeDisplay (btn) {
     const currText = document.createElement('div');
     const input = String(btn.textContent)
 
@@ -63,8 +68,7 @@ function changeDisplay (btn) {
 
             currText.textContent = input;
     
-            screen.textContent = '';
-            screen.appendChild(currText);
+            refreshScreen(currText);
             return;    
         }
 
@@ -77,8 +81,7 @@ function changeDisplay (btn) {
         calcVars.displVar += input;
         currText.textContent = calcVars.displVar;
 
-        screen.textContent = '';
-        screen.appendChild(currText);
+        refreshScreen(currText);
 
     } else if ('+-*/'.includes(input)) {
         // prevent screen from clearing if operator button pressed sucessively
@@ -91,8 +94,8 @@ function changeDisplay (btn) {
         if ((calcVars.isOp) && (input !== calcVars.op)) {
             calcVars.op = input;
             currText.textContent = calcVars.displVar + input;
-            screen.textContent = '';
-            screen.appendChild(currText);
+            refreshScreen(currText);
+
             return;
         }
 
@@ -103,8 +106,8 @@ function changeDisplay (btn) {
 
             calcVars.op = input;
             currText.textContent = calcVars.numA + input;
-            screen.textContent = '';
-            screen.appendChild(currText);
+            refreshScreen(currText);
+
             calcVars.equals = false;
             calcVars.percent = false;
             return;
@@ -122,8 +125,7 @@ function changeDisplay (btn) {
 
         currText.textContent = calcVars.displVar + input;
 
-        screen.textContent = '';
-        screen.appendChild(currText);
+        refreshScreen(currText);
 
         // percent only applies once until an operator AND another number is inputted
         // same with decimal
@@ -140,7 +142,9 @@ function changeDisplay (btn) {
         calcVars.equals = false;
 
         calcVars.displVar = '0';
-        screen.textContent = '0';
+        currText.textContent = '0';
+
+        refreshScreen(currText);
 
     } else if (input === '+/-') {
         if (calcVars.equals) {
@@ -154,8 +158,8 @@ function changeDisplay (btn) {
 
         calcVars.isOp = false;
 
-        screen.textContent = '';
-        screen.appendChild(currText);
+        refreshScreen(currText);
+
     } else if (input === '%') {
         // percent should only trigger once per number, should not affect 0
         if ((calcVars.displVar / 100 === 0) || calcVars.percent) {
@@ -173,8 +177,8 @@ function changeDisplay (btn) {
         calcVars.percent = true;
         currText.textContent = calcVars.displVar + calcVars.op;
 
-        screen.textContent = '';
-        screen.appendChild(currText);
+        refreshScreen(currText);
+
     } else if (input === '.') {
         if (calcVars.decimal || calcVars.percent) {
             return;
@@ -190,8 +194,8 @@ function changeDisplay (btn) {
         calcVars.displVar += input
         currText.textContent = calcVars.displVar
 
-        screen.textContent = '';
-        screen.appendChild(currText);
+        refreshScreen(currText);
+
     } else if (input === '=') {
         // do nothing if there is no operator
         if (!(calcVars.op)) {
@@ -209,8 +213,7 @@ function changeDisplay (btn) {
         // to chain sucessive operations from pressing '=' multiple times
         calcVars.displVar = calcVars.numB;
 
-        screen.textContent = '';
-        screen.appendChild(currText);
+        refreshScreen(currText);
 
         calcVars.isOp = false;
         calcVars.percent = false;
