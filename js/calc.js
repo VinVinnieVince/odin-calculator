@@ -83,7 +83,7 @@ function insertOp(currText, input) {
 
     if (calcVars.equals) {
 
-        // stop chaining feature from '=' button
+        // stop chaining feature from '=' button, which retained displVar
         calcVars.displVar = '';
 
         calcVars.op = input;
@@ -91,8 +91,6 @@ function insertOp(currText, input) {
 
         calcVars.equals = false;
         calcVars.percent = false;
-
-        refreshScreen(currText);
         return;
     }
 
