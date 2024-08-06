@@ -41,10 +41,33 @@ function operate(a, b, op) {
     }
 };
 
-function refreshScreen(text) {
+function refreshScreen(currText) {
     const screen = document.querySelector('.screen');
     screen.textContent = '';
-    screen.appendChild(text);
+    screen.appendChild(currText);
+}
+
+function insertNum(currText, input) {
+    // this conditional prevents leading zeros
+    if (currText.textContent === '0' && input === '0') {
+        return;
+    } else if (currText.textContent === '0' && input !== '0') {
+        calcVars.displVar = input;
+
+        currText.textContent = input;
+
+        refreshScreen(currText);
+        return;    
+    }
+
+    // clear screen if previous input was an operator
+    if (calcVars.isOp) {
+        calcVars.isOp = false;
+        calcVars.displVar = '';
+    }
+
+    calcVars.displVar += input;
+    currText.textContent = calcVars.displVar;
 }
 
 function changeDisplay (btn) {
@@ -60,26 +83,7 @@ function changeDisplay (btn) {
     // next line checks if is number
     if (+input === +input) {
 
-        // this conditional prevents leading zeros
-        if (currText.textContent === '0' && input === '0') {
-            return;
-        } else if (currText.textContent === '0' && input !== '0') {
-            calcVars.displVar = input;
-
-            currText.textContent = input;
-    
-            refreshScreen(currText);
-            return;    
-        }
-
-        // clear screen if previous input was an operator
-        if (calcVars.isOp) {
-            calcVars.isOp = false;
-            calcVars.displVar = '';
-        }
-
-        calcVars.displVar += input;
-        currText.textContent = calcVars.displVar;
+        insertNum(currText, input);
 
     } else if ('+-*/'.includes(input)) {
         // prevent screen from clearing if operator button pressed sucessively
@@ -124,8 +128,7 @@ function changeDisplay (btn) {
 
         currText.textContent = calcVars.displVar + input;
 
-        // percent only applies once until an operator AND another number is inputted
-        // same with decimal
+        // percent only applies ocalls
         calcVars.percent = false;
         calcVars.decimal = false;
 
