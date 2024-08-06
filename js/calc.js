@@ -75,14 +75,15 @@ function insertOp(currText, input) {
     if ((input === calcVars.op) && (calcVars.displVar === '')) return;
 
     // if operator has been pressed, then same operator pressed, do nothing
-    if ((calcVars.isOp) && (input === calcVars.op)) return;
+    if ((calcVars.isOp) && (input === calcVars.op)) {
+        currText.textContent = calcVars.displVar + input;
+        return;
+    }
 
     // if operator pressed, them another operator pressed, ONLY change operator
     if ((calcVars.isOp) && (input !== calcVars.op)) {
         calcVars.op = input;
         currText.textContent = calcVars.displVar + input;
-        refreshScreen(currText);
-
         return;
     }
 
@@ -144,7 +145,7 @@ function plusMinus(currText) {
 }
 
 function percentage(currText) {
-    // percent should only trigger once per number, should not affect 0
+    // percent should not affect 0
     if ((calcVars.displVar / 100 === 0)) {
         return;
     }
