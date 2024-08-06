@@ -64,6 +64,9 @@ function insertNum(currText, input) {
     if (calcVars.isOp) {
         calcVars.isOp = false;
         calcVars.displVar = '';
+    } else if (calcVars.equals) {
+        resetCalc();
+        calcVars.displVar = '';
     }
 
     calcVars.displVar += input;
@@ -220,7 +223,6 @@ function changeDisplay (btn) {
 
     } refreshScreen(currText);
 }
-
 
 const allBtn = document.querySelectorAll('button');
 allBtn.forEach( (btn) => {
