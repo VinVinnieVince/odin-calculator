@@ -158,6 +158,24 @@ function decimalBtn(currText, input) {
     currText.textContent = calcVars.displVar
 }
 
+function equalsBtn(currText) {
+    calcVars.equals = true;
+
+    calcVars.numB = calcVars.displVar;
+
+    calcVars.displVar = operate(calcVars.numA, calcVars.numB, calcVars.op);
+    calcVars.numA = calcVars.displVar;
+    currText.textContent = calcVars.displVar;
+
+    // prevent further '.' insertions
+    (calcVars.displVar % 1 !== 0) ? calcVars.decimal = true : calcVars.decimal = false;
+
+    // to chain sucessive operations from pressing '=' multiple times
+    calcVars.displVar = calcVars.numB;
+
+    calcVars.isOp = false;
+}
+
 function changeDisplay (btn) {
     const currText = document.createElement('div');
     const input = String(btn.textContent)
@@ -196,26 +214,9 @@ function changeDisplay (btn) {
         // do nothing if there is no operator
         if (!(calcVars.op)) {
             return;
-        }
-
-        calcVars.equals = true;
-
-        calcVars.numB = calcVars.displVar;
-
-        calcVars.displVar = operate(calcVars.numA, calcVars.numB, calcVars.op);
-        calcVars.numA = calcVars.displVar;
-        currText.textContent = calcVars.displVar;
-
-        if (calcVars.displVar % 1 !== 0) {
-            calcVars.decimal = true;
         } else {
-            calcVars.decimal = false;
+            equalsBtn(currText);
         }
-
-        // to chain sucessive operations from pressing '=' multiple times
-        calcVars.displVar = calcVars.numB;
-
-        calcVars.isOp = false;
 
     } refreshScreen(currText);
 }
