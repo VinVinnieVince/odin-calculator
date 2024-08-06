@@ -82,19 +82,9 @@ function insertOp(currText, input) {
     }
 
     if (calcVars.equals) {
-
-        // stop chaining feature from '=' button, which retained displVar
-        calcVars.displVar = '';
-
-        calcVars.op = input;
-        currText.textContent = calcVars.numA + input;
-
-        calcVars.equals = false;
-        calcVars.percent = false;
-        return;
-    }
-
-    if (!(calcVars.numA)) {
+        // stop chaining feature from '=' button, which retained previous displVar
+        calcVars.displVar = calcVars.numA;
+    } else if (!(calcVars.numA)) {
         calcVars.numA = calcVars.displVar;
     } else {
             calcVars.numA = operate(calcVars.numA, calcVars.displVar, calcVars.op);
