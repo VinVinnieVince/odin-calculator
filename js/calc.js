@@ -143,6 +143,24 @@ function plusMinus(currText) {
     calcVars.isOp = false;
 }
 
+function percentage(currText) {
+    // percent should only trigger once per number, should not affect 0
+    if ((calcVars.displVar / 100 === 0)) {
+        return;
+    }
+
+    if (calcVars.equals) {
+        calcVars.numA /= 100;
+        calcVars.displVar = calcVars.numA;
+        calcVars.op = '';
+    } else {
+        calcVars.displVar = calcVars.displVar / 100;
+    }
+
+    calcVars.percent = true;
+    currText.textContent = calcVars.displVar + calcVars.op;
+}
+
 function changeDisplay (btn) {
     const currText = document.createElement('div');
     const input = String(btn.textContent)
@@ -155,11 +173,9 @@ function changeDisplay (btn) {
     // switch could be better for the following, but unsure how to implement
     // next line checks if is number
     if (+input === +input) {
-
         insertNum(currText, input);
 
     } else if ('+-*/'.includes(input)) {
-        
         insertOp(currText, input);
 
     } else if (input === 'AC') {
@@ -170,21 +186,7 @@ function changeDisplay (btn) {
         plusMinus(currText);
 
     } else if (input === '%') {
-        // percent should only trigger once per number, should not affect 0
-        if ((calcVars.displVar / 100 === 0) || calcVars.percent) {
-            return;
-        }
-
-        if (calcVars.equals) {
-            calcVars.numA /= 100;
-            calcVars.displVar = calcVars.numA;
-            calcVars.op = '';
-        } else {
-            calcVars.displVar = calcVars.displVar / 100;
-        }
-
-        calcVars.percent = true;
-        currText.textContent = calcVars.displVar + calcVars.op;
+        percentage(currText);
 
     } else if (input === '.') {
         if (calcVars.decimal || calcVars.percent) {
