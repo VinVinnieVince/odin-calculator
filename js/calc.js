@@ -129,6 +129,20 @@ function resetCalc() {
     calcVars.displVar = '0';
 }
 
+function plusMinus(currText) {
+    if (calcVars.equals) {
+        calcVars.numA *= -1;
+        calcVars.displVar = calcVars.numA;
+    } else {
+        calcVars.displVar *= -1;
+    }
+
+    currText.textContent = calcVars.displVar;
+
+    // allows operators to be used following +/- btn press
+    calcVars.isOp = false;
+}
+
 function changeDisplay (btn) {
     const currText = document.createElement('div');
     const input = String(btn.textContent)
@@ -153,16 +167,7 @@ function changeDisplay (btn) {
         resetCalc();
 
     } else if (input === '+/-') {
-        if (calcVars.equals) {
-            calcVars.numA *= -1;
-            calcVars.displVar = calcVars.numA;
-        } else {
-            calcVars.displVar *= -1;
-        }
-
-        currText.textContent = calcVars.displVar;
-
-        calcVars.isOp = false;
+        plusMinus(currText);
 
     } else if (input === '%') {
         // percent should only trigger once per number, should not affect 0
