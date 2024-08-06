@@ -81,8 +81,6 @@ function changeDisplay (btn) {
         calcVars.displVar += input;
         currText.textContent = calcVars.displVar;
 
-        refreshScreen(currText);
-
     } else if ('+-*/'.includes(input)) {
         // prevent screen from clearing if operator button pressed sucessively
         if ((input === calcVars.op) && (calcVars.displVar === '')) return;
@@ -106,10 +104,11 @@ function changeDisplay (btn) {
 
             calcVars.op = input;
             currText.textContent = calcVars.numA + input;
-            refreshScreen(currText);
 
             calcVars.equals = false;
             calcVars.percent = false;
+
+            refreshScreen(currText);
             return;
         }
 
@@ -124,8 +123,6 @@ function changeDisplay (btn) {
         calcVars.isOp = true;
 
         currText.textContent = calcVars.displVar + input;
-
-        refreshScreen(currText);
 
         // percent only applies once until an operator AND another number is inputted
         // same with decimal
@@ -144,8 +141,6 @@ function changeDisplay (btn) {
         calcVars.displVar = '0';
         currText.textContent = '0';
 
-        refreshScreen(currText);
-
     } else if (input === '+/-') {
         if (calcVars.equals) {
             calcVars.numA *= -1;
@@ -157,8 +152,6 @@ function changeDisplay (btn) {
         currText.textContent = calcVars.displVar;
 
         calcVars.isOp = false;
-
-        refreshScreen(currText);
 
     } else if (input === '%') {
         // percent should only trigger once per number, should not affect 0
@@ -177,8 +170,6 @@ function changeDisplay (btn) {
         calcVars.percent = true;
         currText.textContent = calcVars.displVar + calcVars.op;
 
-        refreshScreen(currText);
-
     } else if (input === '.') {
         if (calcVars.decimal || calcVars.percent) {
             return;
@@ -193,8 +184,6 @@ function changeDisplay (btn) {
         calcVars.decimal = true;
         calcVars.displVar += input
         currText.textContent = calcVars.displVar
-
-        refreshScreen(currText);
 
     } else if (input === '=') {
         // do nothing if there is no operator
@@ -213,12 +202,11 @@ function changeDisplay (btn) {
         // to chain sucessive operations from pressing '=' multiple times
         calcVars.displVar = calcVars.numB;
 
-        refreshScreen(currText);
-
         calcVars.isOp = false;
         calcVars.percent = false;
         calcVars.decimal = false;
-    }
+
+    } refreshScreen(currText);
 }
 
 
