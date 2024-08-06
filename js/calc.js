@@ -20,6 +20,7 @@ const calcVars = {
     op: '',
     isOp: false,
     displVar: '',
+    equals: false,
     percent: false,
     decimal: false,
 }
@@ -81,16 +82,45 @@ function changeDisplay (btn) {
 
     } else if ('+-*/'.includes(input)) {
         // prevent screen from clearing if operator button pressed sucessively
-        if ((input === calcVars.op) && (calcVars.displVar === '')) {
+        if ((input === calcVars.op) && (calcVars.displVar === '')) return;
+
+        // if operator has been pressed, then same operator pressed, do nothing
+        if ((calcVars.isOp) && (input === calcVars.op)) return;
+
+        // if operator pressed, them another operator pressed, ONLY change operator
+        if ((calcVars.isOp) && (input !== calcVars.op)) {
+            calcVars.op = input;
+            currText.textContent = calcVars.displVar + input;
+            screen.textContent = '';
+            screen.appendChild(currText);
             return;
         }
 
-        calcVars.numA = calcVars.displVar;
+        if (calcVars.equals) {
+
+            // stop chaining feature from '=' button
+            calcVars.displVar = '';
+
+            calcVars.op = input;
+            currText.textContent = calcVars.numA + input;
+            screen.textContent = '';
+            screen.appendChild(currText);
+            calcVars.equals = false;
+            calcVars.percent = false;
+            return;
+        }
+
+        if (!(calcVars.numA)) {
+            calcVars.numA = calcVars.displVar;
+        } else {
+                calcVars.numA = operate(calcVars.numA, calcVars.displVar, calcVars.op);
+                calcVars.displVar = calcVars.numA;
+        }
 
         calcVars.op = input;
         calcVars.isOp = true;
 
-        currText.textContent += input;
+        currText.textContent = calcVars.displVar + input;
 
         screen.textContent = '';
         screen.appendChild(currText);
@@ -107,16 +137,21 @@ function changeDisplay (btn) {
         calcVars.isOp = false;
         calcVars.percent = false;
         calcVars.decimal = false;
+        calcVars.equals = false;
 
         calcVars.displVar = '0';
         screen.textContent = '0';
 
     } else if (input === '+/-') {
-        
-        calcVars.displVar = calcVars.numA * -1;
+        if (calcVars.equals) {
+            calcVars.numA *= -1;
+            calcVars.displVar = calcVars.numA;
+        } else {
+            calcVars.displVar *= -1;
+        }
+
         currText.textContent = calcVars.displVar;
 
-        calcVars.op = '';
         calcVars.isOp = false;
 
         screen.textContent = '';
@@ -127,7 +162,14 @@ function changeDisplay (btn) {
             return;
         }
 
-        calcVars.displVar = calcVars.displVar / 100;
+        if (calcVars.equals) {
+            calcVars.numA /= 100;
+            calcVars.displVar = calcVars.numA;
+            calcVars.op = '';
+        } else {
+            calcVars.displVar = calcVars.displVar / 100;
+        }
+
         calcVars.percent = true;
         currText.textContent = calcVars.displVar + calcVars.op;
 
@@ -154,6 +196,8 @@ function changeDisplay (btn) {
         if (!(calcVars.op)) {
             return;
         }
+
+        calcVars.equals = true;
 
         calcVars.numB = calcVars.displVar;
 
