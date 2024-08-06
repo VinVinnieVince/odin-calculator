@@ -70,6 +70,54 @@ function insertNum(currText, input) {
     currText.textContent = calcVars.displVar;
 }
 
+function insertOp(currText, input) {
+    // prevent screen from clearing if operator button pressed sucessively
+    if ((input === calcVars.op) && (calcVars.displVar === '')) return;
+
+    // if operator has been pressed, then same operator pressed, do nothing
+    if ((calcVars.isOp) && (input === calcVars.op)) return;
+
+    // if operator pressed, them another operator pressed, ONLY change operator
+    if ((calcVars.isOp) && (input !== calcVars.op)) {
+        calcVars.op = input;
+        currText.textContent = calcVars.displVar + input;
+        refreshScreen(currText);
+
+        return;
+    }
+
+    if (calcVars.equals) {
+
+        // stop chaining feature from '=' button
+        calcVars.displVar = '';
+
+        calcVars.op = input;
+        currText.textContent = calcVars.numA + input;
+
+        calcVars.equals = false;
+        calcVars.percent = false;
+
+        refreshScreen(currText);
+        return;
+    }
+
+    if (!(calcVars.numA)) {
+        calcVars.numA = calcVars.displVar;
+    } else {
+            calcVars.numA = operate(calcVars.numA, calcVars.displVar, calcVars.op);
+            calcVars.displVar = calcVars.numA;
+    }
+
+    calcVars.op = input;
+    calcVars.isOp = true;
+
+    currText.textContent = calcVars.displVar + input;
+
+    // percent only applies ocalls
+    calcVars.percent = false;
+    calcVars.decimal = false;
+}
+
 function changeDisplay (btn) {
     const currText = document.createElement('div');
     const input = String(btn.textContent)
@@ -86,51 +134,8 @@ function changeDisplay (btn) {
         insertNum(currText, input);
 
     } else if ('+-*/'.includes(input)) {
-        // prevent screen from clearing if operator button pressed sucessively
-        if ((input === calcVars.op) && (calcVars.displVar === '')) return;
-
-        // if operator has been pressed, then same operator pressed, do nothing
-        if ((calcVars.isOp) && (input === calcVars.op)) return;
-
-        // if operator pressed, them another operator pressed, ONLY change operator
-        if ((calcVars.isOp) && (input !== calcVars.op)) {
-            calcVars.op = input;
-            currText.textContent = calcVars.displVar + input;
-            refreshScreen(currText);
-
-            return;
-        }
-
-        if (calcVars.equals) {
-
-            // stop chaining feature from '=' button
-            calcVars.displVar = '';
-
-            calcVars.op = input;
-            currText.textContent = calcVars.numA + input;
-
-            calcVars.equals = false;
-            calcVars.percent = false;
-
-            refreshScreen(currText);
-            return;
-        }
-
-        if (!(calcVars.numA)) {
-            calcVars.numA = calcVars.displVar;
-        } else {
-                calcVars.numA = operate(calcVars.numA, calcVars.displVar, calcVars.op);
-                calcVars.displVar = calcVars.numA;
-        }
-
-        calcVars.op = input;
-        calcVars.isOp = true;
-
-        currText.textContent = calcVars.displVar + input;
-
-        // percent only applies ocalls
-        calcVars.percent = false;
-        calcVars.decimal = false;
+        
+        insertOp(currText, input);
 
     } else if (input === 'AC') {
         calcVars.numA = 0;
