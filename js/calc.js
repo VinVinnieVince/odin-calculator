@@ -108,7 +108,7 @@ function insertOp(currText, input) {
 
     currText.textContent = calcVars.displVar + input;
 
-    // percent only applies ocalls
+    // percent only applies once unless a new number is inserted (i.e. after operator pressed)
     calcVars.percent = false;
     calcVars.decimal = false;
 }
