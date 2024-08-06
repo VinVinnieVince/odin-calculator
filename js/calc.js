@@ -74,14 +74,8 @@ function insertOp(currText, input) {
     // prevent screen from clearing if operator button pressed sucessively
     if ((input === calcVars.op) && (calcVars.displVar === '')) return;
 
-    // if operator has been pressed, then same operator pressed, do nothing
-    if ((calcVars.isOp) && (input === calcVars.op)) {
-        currText.textContent = calcVars.displVar + input;
-        return;
-    }
-
-    // if operator pressed, them another operator pressed, ONLY change operator
-    if ((calcVars.isOp) && (input !== calcVars.op)) {
+    // if operator has been pressed, then same/another operator pressed, ONLY change operator, DONT change numA
+    if (calcVars.isOp) {
         calcVars.op = input;
         currText.textContent = calcVars.displVar + input;
         return;
