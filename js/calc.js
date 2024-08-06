@@ -145,18 +145,16 @@ function percentage(currText) {
 }
 
 function decimalBtn(currText, input) {
-    if (calcVars.decimal || calcVars.percent) {
-        return;
-    }
 
-    // if '.' keep operator, but refresh screen
-    if (calcVars.isOp) {
+    // If operator is pressed, then '.' - keep operator, but refresh screen to add '.' as a new number
+    if (calcVars.isOp || calcVars.equals) {
         calcVars.isOp = false;
         calcVars.displVar = '';
     }
 
     calcVars.decimal = true;
     calcVars.displVar += input
+
     currText.textContent = calcVars.displVar
 }
 
@@ -188,7 +186,11 @@ function changeDisplay (btn) {
         percentage(currText);
 
     } else if (input === '.') {
-        decimalBtn(currText, input);
+        if (calcVars.decimal || calcVars.percent) {
+            return;
+        } else {
+            decimalBtn(currText, input);
+        }
 
     } else if (input === '=') {
         // do nothing if there is no operator
@@ -204,12 +206,16 @@ function changeDisplay (btn) {
         calcVars.numA = calcVars.displVar;
         currText.textContent = calcVars.displVar;
 
+        if (calcVars.displVar % 1 !== 0) {
+            calcVars.decimal = true;
+        } else {
+            calcVars.decimal = false;
+        }
+
         // to chain sucessive operations from pressing '=' multiple times
         calcVars.displVar = calcVars.numB;
 
         calcVars.isOp = false;
-        calcVars.percent = false;
-        calcVars.decimal = false;
 
     } refreshScreen(currText);
 }
