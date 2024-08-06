@@ -180,8 +180,9 @@ function changeDisplay (btn) {
             return;
         }
 
-        if (calcVars.op) {
-            calcVars.op = '';
+        // if '.' keep operator, but refresh screen
+        if (calcVars.isOp) {
+            calcVars.isOp = false;
             calcVars.displVar = '';
         }
 
