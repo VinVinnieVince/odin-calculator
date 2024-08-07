@@ -1,19 +1,19 @@
 :root {
     /* the following colors are hsl values */
-    --bgClr: 26, 26, 26;
-    --gbClr: 242, 242, 242;
-    --btnBgA: 153, 153, 153;
-    --btnClrA: 26, 26, 26;
-    --btnBgB: 64, 64, 64;
-    --btnClrB: 242, 242, 242;
-    --btnBgC: 255, 133, 51;
-    --btnClrC: 242, 242, 242;
+    --bgClr: 0, 0%, 10%;
+    --gbClr: 0, 0%, 95%;
+    --btnBgA: 0, 0%, 60%;
+    --btnClrA: 0, 0%, 10%;
+    --btnBgB: 0, 0%, 25%;
+    --btnClrB: 0, 0%, 95%;
+    --btnBgC: 24, 100%, 60%;
+    --btnClrC: 0, 0%, 95%;
 
 }
 
 body {
-    background-color: rgb(var(--bgClr));
-    color: rgb(var(--gbClr));
+    background-color: hsl(var(--bgClr));
+    color: hsl(var(--gbClr));
 }
 
 .pageWrapper {
@@ -86,19 +86,19 @@ button {
 }
 
 .colorABtn {
-    background-color: rgb(var(--btnBgA));
-    color: rgb(var(--btnClrA));
+    background-color: hsl(var(--btnBgA));
+    color: hsl(var(--btnClrA));
     font-size: 4vh;
 }
 
 .colorBBtn {
-    background-color: rgb(var(--btnBgB));
-    color: rgb(var(--btnClrB));
+    background-color: hsl(var(--btnBgB));
+    color: hsl(var(--btnClrB));
 }
 
 .colorCBtn {
-    background-color: rgb(var(--btnBgC));
-    color: rgb(var(--btnClrC));
+    background-color: hsl(var(--btnBgC));
+    color: hsl(var(--btnClrC));
 }
 
 .zeroBtn {
