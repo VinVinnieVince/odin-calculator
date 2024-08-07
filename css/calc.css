@@ -133,6 +133,8 @@ button:active {
 
 .zeroBtn {
     flex: 1 0 0;
+    text-align: left;
+    text-indent: 17.5%;
 }
 
 .bottomBtn {
