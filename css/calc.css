@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 :root {
     /* the following colors are hsl values */
     --bgClr: 0, 0%, 10%;
@@ -61,7 +63,9 @@ body {
 }
 
 .display {
-    font-size: 5.5vh;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-size: 10vh;
+    font-weight: 200;
 }
 
 .btnWrapper {
@@ -92,7 +96,9 @@ button {
     padding: 0;
     border: none;
     border-radius: 9999px;
+    font-family: Inter, Arial, Helvetica, sans-serif;
     font-size: 5.5vh;
+    font-weight: 400;
     transition: background-color 0.25s linear;
 }
 
