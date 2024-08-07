@@ -96,18 +96,18 @@ button {
 }
 
 .colorABtn {
-    background-color: hsl(var(--btnBgA));
+    background-color: hsl(var(--btnBgAh), var(--btnBgAs), var(--btnBgAl));
     color: hsl(var(--btnClrA));
     font-size: 4vh;
 }
 
 .colorBBtn {
-    background-color: hsl(var(--btnBgB));
+    background-color: hsl(var(--btnBgBh), var(--btnBgBs), var(--btnBgBl));
     color: hsl(var(--btnClrB));
 }
 
 .colorCBtn {
-    background-color: hsl(var(--btnBgC));
+    background-color: hsl(var(--btnBgCh), var(--btnBgCs), var(--btnBgCl));
     color: hsl(var(--btnClrC));
 }
 
