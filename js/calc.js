@@ -151,9 +151,9 @@ function percentage(currText) {
 function decimalBtn(currText, input) {
 
     // If operator is pressed, then '.' - keep operator, but refresh screen to add '.' as a new number
-    if (calcVars.isOp || calcVars.equals) {
+    if (calcVars.isOp || calcVars.equals || (calcVars.displVar === '')) {
         calcVars.isOp = false;
-        calcVars.displVar = '';
+        calcVars.displVar = '0';
     }
 
     calcVars.decimal = true;
