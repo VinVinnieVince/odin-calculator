@@ -2,11 +2,21 @@
     /* the following colors are hsl values */
     --bgClr: 0, 0%, 10%;
     --gbClr: 0, 0%, 95%;
-    --btnBgA: 0, 0%, 60%;
+
+    --btnBgAh: 0;
+    --btnBgAs: 0%;
+    --btnBgAl: 60%;
+
+    --btnBgBh: 0;
+    --btnBgBs: 0%;
+    --btnBgBl: 25%;
+
+    --btnBgCh: 24;
+    --btnBgCs: 100%;
+    --btnBgCl: 60%;
+    
     --btnClrA: 0, 0%, 10%;
-    --btnBgB: 0, 0%, 25%;
     --btnClrB: 0, 0%, 95%;
-    --btnBgC: 24, 100%, 60%;
     --btnClrC: 0, 0%, 95%;
 
 }
