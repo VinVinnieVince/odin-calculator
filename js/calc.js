@@ -53,9 +53,7 @@ function insertNum(currText, input) {
         return;
     } else if (currText.textContent === '0' && input !== '0') {
         calcVars.displVar = input;
-
         currText.textContent = input;
-
         refreshScreen(currText);
         return;    
     }
@@ -158,7 +156,6 @@ function decimalBtn(currText, input) {
 
     calcVars.decimal = true;
     calcVars.displVar += input
-
     currText.textContent = calcVars.displVar
 }
 
