@@ -43,6 +43,17 @@ function operate(a, b, op) {
 
 function refreshScreen(currText) {
     const screen = document.querySelector('.screen');
+
+    if (calcVars.displVar.toString().length > 8) {
+        if (calcVars.isOp) {
+            currText.textContent = `${Number(calcVars.displVar).toExponential(2)}${calcVars.op}`;
+        } else if (calcVars.equals) {
+            currText.textContent = Number(calcVars.numA).toExponential(2);
+        } else {
+            currText.textContent = Number(calcVars.displVar).toExponential(2);
+        }
+    }
+
     screen.textContent = '';
     screen.appendChild(currText);
 }
