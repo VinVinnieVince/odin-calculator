@@ -4,6 +4,7 @@
     /* the following colors are hsl values */
     --bgClr: 0, 0%, 10%;
     --gbClr: 0, 0%, 95%;
+    --calcClr: 0, 0%, 15%;
 
     --btnBgAh: 0;
     --btnBgAs: 0%;
@@ -49,6 +50,7 @@ body {
     margin: 0;
     gap: 30px;
     padding: 30px;
+    background-color: hsl(var(--calcClr));
 }
 
 .screen {
