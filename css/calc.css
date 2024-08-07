@@ -1,6 +1,18 @@
+:root {
+    --bgClr: hsl(0, 0%, 10%);
+    --gbClr: hsl(0, 0%, 95%);
+    --btnBgA: hsl(0, 0%, 60%);
+    --btnClrA: hsl(0, 0%, 10%);
+    --btnBgB: hsl(0, 0%, 25%);
+    --btnClrB: hsl(0, 0%, 95%);
+    --btnBgC: hsl(24, 100%, 60%);
+    --btnClrC: hsl(0, 0%, 95%);
+
+}
+
 body {
-    background-color: #1a1a1a;
-    color: #f2f2f2;
+    background-color: var(--bgClr);
+    color: var(--gbClr);
 }
 
 .pageWrapper {
@@ -73,19 +85,19 @@ button {
 }
 
 .colorABtn {
-    background-color: #999999;
-    color: #1a1a1a;
+    background-color: var(--btnBgA);
+    color: var(--btnClrA);
     font-size: 4vh;
 }
 
 .colorBBtn {
-    background-color: #404040;
-    color: #f2f2f2;
+    background-color: var(--btnBgB);
+    color: var(--btnClrB);
 }
 
 .colorCBtn {
-    background-color: #ff8533;
-    color: #f2f2f2;
+    background-color: var(--btnBgC);
+    color: var(--btnClrC);
 }
 
 .zeroBtn {
