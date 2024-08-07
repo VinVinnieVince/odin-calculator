@@ -1,3 +1,8 @@
+body {
+    background-color: #1a1a1a;
+    color: #f2f2f2;
+}
+
 .pageWrapper {
     height: 100%;
     width: 100%;
@@ -26,17 +31,21 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    flex: 3.33 0 0;
+    flex: 3 0 0;
     border: 2px solid black;
     padding-right: 5%;
     overflow: hidden;
+}
+
+.display {
+    font-size: 5.5vh;
 }
 
 .btnWrapper {
     display: flex;
     flex-flow: column;
     justify-content: center;
-    flex: 6.66 0 auto;
+    flex: 7 0 0;
     gap: 10px;
     border: 2px solid black;
 }
@@ -60,7 +69,23 @@ button {
     padding: 0;
     border: none;
     border-radius: 9999px;
-    background-color: lightgray;
+    font-size: 5.5vh;
+}
+
+.colorABtn {
+    background-color: #999999;
+    color: #1a1a1a;
+    font-size: 4vh;
+}
+
+.colorBBtn {
+    background-color: #404040;
+    color: #f2f2f2;
+}
+
+.colorCBtn {
+    background-color: #ff8533;
+    color: #f2f2f2;
 }
 
 .zeroBtn {
