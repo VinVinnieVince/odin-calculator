@@ -48,7 +48,10 @@ function refreshScreen(currText) {
         if (calcVars.isOp) {
             currText.textContent = `${Number(calcVars.displVar).toExponential(2)}${calcVars.op}`;
         } else if (calcVars.equals) {
-            currText.textContent = Number(calcVars.numA).toExponential(2);
+            // due to chaining feature, remember that the total value stored in numA
+            if (calcVars.numA.toString().length > 8) {
+                currText.textContent = Number(calcVars.numA).toExponential(2);
+            }
         } else {
             currText.textContent = Number(calcVars.displVar).toExponential(2);
         }
