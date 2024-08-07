@@ -239,3 +239,18 @@ allBtn.forEach( (btn) => {
         changeDisplay(btn);
     })
 })
+
+const body = document.querySelector('body');
+body.addEventListener ('keydown', (e) => {
+    const targetBtn = document.getElementById(e.key);
+    if (targetBtn) {
+        targetBtn.click();
+        targetBtn.classList.add('keyPressed');
+    }
+})
+body.addEventListener ('keyup', (e) => {
+    const targetBtn = document.getElementById(e.key);
+    if (targetBtn) {
+        targetBtn.classList.remove('keyPressed');
+    }
+})

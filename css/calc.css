@@ -109,7 +109,8 @@ button {
     transition: all 0.15s linear;
 }
 
-button:active {
+button:active,
+button.keyPressed {
     transition: all 0.03s linear;
 }
 
@@ -118,7 +119,8 @@ button:active {
     color: hsl(var(--btnClrA));
     font-size: 4vh;
 }
-.colorABtn:active {
+.colorABtn:active,
+.colorABtn.keyPressed {
     background-color: hsl(var(--btnBgAh), var(--btnBgAs), calc(var(--btnBgAl) * 1.3));
     font-size: 3vh;
 }
@@ -127,7 +129,8 @@ button:active {
     background-color: hsl(var(--btnBgBh), var(--btnBgBs), var(--btnBgBl));
     color: hsl(var(--btnClrB));
 }
-.colorBBtn:active {
+.colorBBtn:active,
+.colorBBtn.keyPressed {
     background-color: hsl(var(--btnBgBh), var(--btnBgBs), calc(var(--btnBgBl) * 1.3));
     font-size: 4vh;
 }
@@ -136,7 +139,8 @@ button:active {
     background-color: hsl(var(--btnBgCh), var(--btnBgCs), var(--btnBgCl));
     color: hsl(var(--btnClrC));
 }
-.colorCBtn:active {
+.colorCBtn:active,
+.colorCBtn.keyPressed {
     background-color: hsl(var(--btnBgCh), var(--btnBgCs), calc(var(--btnBgCl) * 1.3));
     font-size: 4vh;
 }
