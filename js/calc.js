@@ -242,14 +242,32 @@ allBtn.forEach( (btn) => {
 
 const body = document.querySelector('body');
 body.addEventListener ('keydown', (e) => {
-    const targetBtn = document.getElementById(e.key);
+    let targetBtn;
+
+    if (e.key === 'Escape') {
+        targetBtn = document.getElementById('AC');
+    } else if (e.key === 'Enter') {
+        targetBtn = document.getElementById('=');
+    } else {
+        targetBtn = document.getElementById(e.key);
+    }
+
     if (targetBtn) {
         targetBtn.click();
         targetBtn.classList.add('keyPressed');
     }
 })
 body.addEventListener ('keyup', (e) => {
-    const targetBtn = document.getElementById(e.key);
+    let targetBtn;
+    
+    if (e.key === 'Escape') {
+        targetBtn = document.getElementById('AC');
+    } else if (e.key === 'Enter') {
+        targetBtn = document.getElementById('=');
+    } else {
+        targetBtn = document.getElementById(e.key);
+    }
+    
     if (targetBtn) {
         targetBtn.classList.remove('keyPressed');
     }
