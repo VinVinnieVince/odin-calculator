@@ -73,14 +73,14 @@ body {
     flex-flow: column;
     justify-content: center;
     flex: 7 0 0;
-    gap: 10px;
+    gap: 20px;
     border: 2px solid black;
 }
 
 .btnRow {
     display: flex;
     flex: 1 0 0;
-    gap: 10px;
+    gap: 20px;
 }
 
 .bottomRow {
@@ -88,7 +88,7 @@ body {
 }
 
 .bottomRow.bottomBtn {
-    gap: 10px;
+    gap: 20px;
 }
 
 button {
