@@ -43,18 +43,19 @@ function operate(a, b, op) {
 
 function refreshScreen(currText) {
     const screen = document.querySelector('.screen');
+    console.log(calcVars.displVar.toString().length)
 
     if (calcVars.displVar.toString().length > 8) {
         if (calcVars.isOp) {
             currText.textContent = `${Number(calcVars.displVar).toExponential(2)}${calcVars.op}`;
-        } else if (calcVars.equals) {
-            // due to chaining feature, remember that the total value stored in numA
-            if (calcVars.numA.toString().length > 8) {
-                currText.textContent = Number(calcVars.numA).toExponential(2);
-            }
         } else {
             currText.textContent = Number(calcVars.displVar).toExponential(2);
         }
+    }
+
+    if (calcVars.equals && calcVars.numA.toString().length > 8) {
+    // due to chaining feature, remember that the total value stored in numA
+        currText.textContent = Number(calcVars.numA).toExponential(3);
     }
 
     screen.textContent = '';
