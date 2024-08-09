@@ -55,7 +55,7 @@ function refreshScreen(currText) {
 
     if (calcVars.equals && calcVars.numA.toString().length > 8) {
     // due to chaining feature, remember that the total value stored in numA
-        currText.textContent = Number(calcVars.numA).toExponential(3);
+        currText.textContent = Number(calcVars.numA).toExponential(2);
     }
 
     screen.textContent = '';
