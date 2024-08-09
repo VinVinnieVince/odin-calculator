@@ -138,6 +138,7 @@ button.keyPressed {
 .colorCBtn {
     background-color: hsl(var(--btnBgCh), var(--btnBgCs), var(--btnBgCl));
     color: hsl(var(--btnClrC));
+    padding-bottom: 2%;
 }
 .colorCBtn:active,
 .colorCBtn.keyPressed {
