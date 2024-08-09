@@ -43,9 +43,9 @@ function operate(a, b, op) {
 
 function refreshScreen(currText) {
     const screen = document.querySelector('.screen');
-    console.log(calcVars.displVar.toString().length)
+    console.log(calcVars.displVar.length)
 
-    if (calcVars.displVar.toString().length > 8) {
+    if (calcVars.displVar.length > 8) {
         if (calcVars.isOp) {
             currText.textContent = `${Number(calcVars.displVar).toExponential(2)}${calcVars.op}`;
         } else {
