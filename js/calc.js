@@ -43,19 +43,32 @@ function operate(a, b, op) {
 
 function refreshScreen(currText) {
     const screen = document.querySelector('.screen');
-    console.log(calcVars.displVar.length)
 
-    if (calcVars.displVar.length > 8) {
-        if (calcVars.isOp) {
-            currText.textContent = `${Number(calcVars.displVar).toExponential(2)}${calcVars.op}`;
+    // to handle float precision errors, innate with native JS
+    // more info here: https://stackoverflow.com/questions/1458633/how-can-i-deal-with-floating-point-number-precision-in-javascript?noredirect=1&lq=1
+    let floatCheck = parseFloat(Number(calcVars.displVar)
+        .toFixed(12))
+        .toString();
+
+    if (calcVars.isOp) {
+        if (floatCheck.length > 8) {
+            currText.textContent = `${parseFloat(calcVars.displVar).toExponential(2)}${calcVars.op}`;
         } else {
-            currText.textContent = Number(calcVars.displVar).toExponential(2);
+            currText.textContent = `${floatCheck}${calcVars.op}`;
         }
     }
 
-    if (calcVars.equals && calcVars.numA.toString().length > 8) {
-    // due to chaining feature, remember that the total value stored in numA
-        currText.textContent = Number(calcVars.numA).toExponential(2);
+    //for checking result after '=' button pressed - due to chaining feature, remember that the total value stored in numA
+    floatCheck = parseFloat(Number(calcVars.numA)
+        .toFixed(12))
+        .toString();
+
+    if (calcVars.equals) {
+        if (floatCheck.length > 8) {
+            currText.textContent = parseFloat(calcVars.numA).toExponential(2);
+        } else {
+            currText.textContent = floatCheck;
+        }
     }
 
     screen.textContent = '';
