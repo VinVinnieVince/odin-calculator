@@ -32,8 +32,10 @@ function operate(a, b, op) {
         case '-':
             return subtract(a, b);
         case '*':
+        case '×':
             return multiply(a, b);
         case '/':
+        case '÷':
             return divide(a, b);
         default:
             console.log('error');
@@ -101,6 +103,7 @@ function insertNum(currText, input) {
 }
 
 function insertOp(currText, input) {
+    
     // prevent screen from clearing if operator button pressed sucessively
     if ((input === calcVars.op) && (calcVars.displVar === '')) return;
 
@@ -219,7 +222,7 @@ function changeDisplay (btn) {
     if (+input === +input) {
         insertNum(currText, input);
 
-    } else if ('+-*/'.includes(input)) {
+    } else if ('+-*/×÷'.includes(input)) {
         insertOp(currText, input);
 
     } else if (input === 'AC') {
